@@ -73,20 +73,35 @@ public class TicTacToe {
                 squaresOccupied += 1;
 
                 turn = SquareEnum.CROSS;
-                computerTurn();
+             //   computerTurn();
             }
         }
         gameResult();
     }
 
-    private void computerTurn() throws IOException {
-        int index = 0;
-        while(index < 9) {
-            if (findAndDoBestComputerMove(squares[index]))
-                break;
-            index++;
+    private int score(){
+        if (hasPlayerWon().equals("AI"))
+            return 10;
+        else if (hasPlayerWon().equals("Player"))
+                return -10;
+        else
+            return 0;
+    }
+
+    private void miniMax(){
+        List<Move> nextMoves = getPossibleMoves();
+
+        int bestScore;
+        int currentScore;
+
+        if(nextMoves.isEmpty()){
+
         }
-        squareClicked(index);
+
+    }
+
+    private void computerTurn() throws IOException {
+
     }
 
     private boolean findAndDoBestComputerMove(Square square) {

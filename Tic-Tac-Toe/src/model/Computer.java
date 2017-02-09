@@ -8,8 +8,6 @@ import java.io.IOException;
  * Created by Jordan on 9-2-2017.
  */
 public class Computer {
-
-
     private SquareEnum[] squareEnums;
     private TicTacToe ticTacToe;
     private int row, column;
