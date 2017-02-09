@@ -56,7 +56,6 @@ public class MainController implements Initializable{
         }
 
         drawField();
-        //gc = canvas.getGraphicsContext2D();
     }
 
     private void drawField() {

@@ -15,6 +15,7 @@ public class TicTacToe {
     private SquareEnum[] squareEnums;
     private int squaresOccupied;
     private SquareEnum turn = SquareEnum.CROSS;
+    public Computer computer;
 
     public TicTacToe() {
         squareEnums = new SquareEnum[9];
@@ -57,6 +58,8 @@ public class TicTacToe {
                 turn = SquareEnum.CIRCLE;
                 squareEnums[index] = SquareEnum.CROSS;
                 squaresOccupied += 1;
+                System.out.println(rectangle);
+                computer = new Computer(squareEnums);
             } else if (turn == SquareEnum.CIRCLE) {
                 Image img = new Image(getClass().getResource("/resources/images/circle.png").toString());
                 rectangle.setFill(new ImagePattern(img));
