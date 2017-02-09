@@ -1,14 +1,9 @@
 package model;
 
-import javafx.embed.swing.SwingFXUtils;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -31,15 +26,12 @@ public class TicTacToe {
         int index = row * 3 + column;
         if (squareEnums[index] == SquareEnum.EMPTY) {
             if (turn == SquareEnum.CROSS) {
-                BufferedImage bufferedImage;
-                bufferedImage = ImageIO.read(new File("images/cross.png"));
-                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                Image img = new Image(getClass().getResource("/resources/images/cross.png").toString());
 
-                rectangle.setFill(new ImagePattern(image));
+                rectangle.setFill(new ImagePattern(img));
                 turn = SquareEnum.CIRCLE;
-            }
-            if (turn == SquareEnum.CIRCLE) {
-                Image img = new Image(FXMLLoader.load(getClass().getClassLoader().getResource("images/circle.png")).toString());
+            } else if (turn == SquareEnum.CIRCLE) {
+                Image img = new Image(getClass().getResource("/resources/images/circle.png").toString());
                 rectangle.setFill(new ImagePattern(img));
                 turn = SquareEnum.CROSS;
             }

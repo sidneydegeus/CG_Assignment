@@ -22,7 +22,7 @@ public class Main extends Application {
         root.setId("pane");
 
         Scene scene = new Scene(root, width, height);
-        scene.getStylesheets().addAll(this.getClass().getResource("css/style.css").toExternalForm());
+        scene.getStylesheets().addAll(this.getClass().getResource("resources/css/style.css").toExternalForm());
         window.setScene(scene);
         window.centerOnScreen();
         window.show();
