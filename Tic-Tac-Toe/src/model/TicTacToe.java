@@ -133,10 +133,10 @@ public class TicTacToe {
         if (hasPlayerWon().equals("AI")) {
             alert("AI (circle) has won the game!");
         }
-        if(hasPlayerWon().equals("Player")) {
+        else if(hasPlayerWon().equals("Player")) {
             alert("Player (cross) has won the game!");
         }
-        if(squaresOccupied == 9) {
+        else if(squaresOccupied == 9) {
             alert("Game ended as a draw!");
         }
     }
