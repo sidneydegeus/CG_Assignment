@@ -7,6 +7,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Sidney on 2/9/2017.
@@ -56,7 +57,6 @@ public class TicTacToe {
     }
 
     public void squareClicked(int index) throws IOException {
-        System.out.println("do i reach this again");
         if (squares[index].getSquareEnum() == SquareEnum.EMPTY) {
             if (turn == SquareEnum.CROSS) {
                 Image img = new Image(getClass().getResource("/resources/images/cross.png").toString());
@@ -91,6 +91,11 @@ public class TicTacToe {
 
     private boolean findAndDoBestComputerMove(Square square) {
         return false;
+    }
+
+    private List<Move> getPossibleMoves() {
+
+        return null;
     }
 
     private void gameResult() {

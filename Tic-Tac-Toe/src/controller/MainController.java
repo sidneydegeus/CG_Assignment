@@ -70,7 +70,7 @@ public class MainController implements Initializable{
                 squares[index].setRectangle(rectangle);
                 rectangle.setOnMouseClicked(e -> {
                     try {
-                        ticTacToe.squareClicked(rectangle, index);
+                        ticTacToe.squareClicked(index);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }

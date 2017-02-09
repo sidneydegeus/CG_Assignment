@@ -9,6 +9,7 @@ import java.io.IOException;
  */
 public class Computer {
 
+
     private SquareEnum[] squareEnums;
     private TicTacToe ticTacToe;
     private int row, column;
