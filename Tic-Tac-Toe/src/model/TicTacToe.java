@@ -7,6 +7,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,14 +89,14 @@ public class TicTacToe {
             return 0;
     }
 
-    private void miniMax(){
+    private void miniMax(int depth){
         List<Move> nextMoves = getPossibleMoves();
 
         int bestScore;
         int currentScore;
 
-        if(nextMoves.isEmpty()){
-
+        if(nextMoves.isEmpty() || depth == 0){
+            //
         }
 
     }
@@ -109,8 +110,23 @@ public class TicTacToe {
     }
 
     private List<Move> getPossibleMoves() {
+        List<Move> nextMoves = new ArrayList<Move>();
 
-        return null;
+        // If gameover, i.e., no next move
+        if (hasPlayerWon().equals("AI") || hasPlayerWon().equals("Player")) {
+            return nextMoves;   // return empty list
+        }
+
+        // Search for empty cells and add to the List
+        for (int row = 0; row < 3; ++row) {
+            for (int col = 0; col < 3; ++col) {
+                int index = row * 3 + col;
+                if (squares[index].getSquareEnum() == SquareEnum.EMPTY) {
+                    nextMoves.add(new Move(row, col));
+                }
+            }
+        }
+        return nextMoves;
     }
 
     private void gameResult() {
