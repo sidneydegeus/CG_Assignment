@@ -55,26 +55,42 @@ public class TicTacToe {
         return "";
     }
 
-    public void squareClicked(Rectangle rectangle, int index) throws IOException {
+    public void squareClicked(int index) throws IOException {
         System.out.println("do i reach this again");
         if (squares[index].getSquareEnum() == SquareEnum.EMPTY) {
             if (turn == SquareEnum.CROSS) {
                 Image img = new Image(getClass().getResource("/resources/images/cross.png").toString());
-                rectangle.setFill(new ImagePattern(img));
-                turn = SquareEnum.CIRCLE;
+                squares[index].getRectangle().setFill(new ImagePattern(img));
                 squares[index].setSquareEnum(SquareEnum.CROSS);
                 squaresOccupied += 1;
-                System.out.println(rectangle);
-               // computer = new Computer(squareEnums);
+
+                // give turn to other
+                turn = SquareEnum.CIRCLE;
             } else if (turn == SquareEnum.CIRCLE) {
                 Image img = new Image(getClass().getResource("/resources/images/circle.png").toString());
-                rectangle.setFill(new ImagePattern(img));
-                turn = SquareEnum.CROSS;
+                squares[index].getRectangle().setFill(new ImagePattern(img));
                 squares[index].setSquareEnum(SquareEnum.CIRCLE);
                 squaresOccupied += 1;
+
+                turn = SquareEnum.CROSS;
+                computerTurn();
             }
         }
         gameResult();
+    }
+
+    private void computerTurn() throws IOException {
+        int index = 0;
+        while(index < 9) {
+            if (findAndDoBestComputerMove(squares[index]))
+                break;
+            index++;
+        }
+        squareClicked(index);
+    }
+
+    private boolean findAndDoBestComputerMove(Square square) {
+        return false;
     }
 
     private void gameResult() {
