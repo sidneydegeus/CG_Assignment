@@ -12,105 +12,97 @@ import java.io.IOException;
  * Created by Sidney on 2/9/2017.
  */
 public class TicTacToe {
-    private SquareEnum[] squareEnums;
+    public Square[] getSquares() {
+        return squares;
+    }
+    public void setSquares(Square[] squares) {
+        this.squares = squares;
+    }
+
+    private Square[] squares;
     private int squaresOccupied;
     private SquareEnum turn = SquareEnum.CROSS;
     public Computer computer;
 
     public TicTacToe() {
-        squareEnums = new SquareEnum[9];
+        squares = new Square[9];
         for (int i = 0; i < 9; i++) {
-            squareEnums[i] = SquareEnum.EMPTY;
+            squares[i] = new Square(SquareEnum.EMPTY);
         }
         squaresOccupied = 0;
     }
 
     public String hasPlayerWon(){
-        if(squareEnums[0] == SquareEnum.CIRCLE && squareEnums[1] == SquareEnum.CIRCLE && squareEnums[2] == SquareEnum.CIRCLE ||
-                squareEnums[3] == SquareEnum.CIRCLE && squareEnums[4] == SquareEnum.CIRCLE && squareEnums[5] == SquareEnum.CIRCLE ||
-                squareEnums[6] == SquareEnum.CIRCLE && squareEnums[7] == SquareEnum.CIRCLE && squareEnums[8] == SquareEnum.CIRCLE ||
-                squareEnums[0] == SquareEnum.CIRCLE && squareEnums[3] == SquareEnum.CIRCLE && squareEnums[6] == SquareEnum.CIRCLE ||
-                squareEnums[1] == SquareEnum.CIRCLE && squareEnums[4] == SquareEnum.CIRCLE && squareEnums[7] == SquareEnum.CIRCLE ||
-                squareEnums[2] == SquareEnum.CIRCLE && squareEnums[5] == SquareEnum.CIRCLE && squareEnums[8] == SquareEnum.CIRCLE ||
-                squareEnums[0] == SquareEnum.CIRCLE && squareEnums[4] == SquareEnum.CIRCLE && squareEnums[8] == SquareEnum.CIRCLE ||
-                squareEnums[2] == SquareEnum.CIRCLE && squareEnums[4] == SquareEnum.CIRCLE && squareEnums[6] == SquareEnum.CIRCLE) {
+        if(squares[0].getSquareEnum() == SquareEnum.CIRCLE && squares[1].getSquareEnum() == SquareEnum.CIRCLE && squares[2].getSquareEnum() == SquareEnum.CIRCLE ||
+                squares[3].getSquareEnum() == SquareEnum.CIRCLE && squares[4].getSquareEnum() == SquareEnum.CIRCLE && squares[5].getSquareEnum() == SquareEnum.CIRCLE ||
+                squares[6].getSquareEnum() == SquareEnum.CIRCLE && squares[7].getSquareEnum() == SquareEnum.CIRCLE && squares[8].getSquareEnum() == SquareEnum.CIRCLE ||
+                squares[0].getSquareEnum() == SquareEnum.CIRCLE && squares[3].getSquareEnum() == SquareEnum.CIRCLE && squares[6].getSquareEnum() == SquareEnum.CIRCLE ||
+                squares[1].getSquareEnum() == SquareEnum.CIRCLE && squares[4].getSquareEnum() == SquareEnum.CIRCLE && squares[7].getSquareEnum() == SquareEnum.CIRCLE ||
+                squares[3].getSquareEnum() == SquareEnum.CIRCLE && squares[5].getSquareEnum() == SquareEnum.CIRCLE && squares[8].getSquareEnum() == SquareEnum.CIRCLE ||
+                squares[0].getSquareEnum() == SquareEnum.CIRCLE && squares[4].getSquareEnum() == SquareEnum.CIRCLE && squares[8].getSquareEnum() == SquareEnum.CIRCLE ||
+                squares[2].getSquareEnum() == SquareEnum.CIRCLE && squares[4].getSquareEnum() == SquareEnum.CIRCLE && squares[6].getSquareEnum() == SquareEnum.CIRCLE) {
             return "AI";
-        } else if(squareEnums[0] == SquareEnum.CROSS && squareEnums[1] == SquareEnum.CROSS && squareEnums[2] == SquareEnum.CROSS ||
-                squareEnums[3] == SquareEnum.CROSS && squareEnums[4] == SquareEnum.CROSS && squareEnums[5] == SquareEnum.CROSS ||
-                squareEnums[6] == SquareEnum.CROSS && squareEnums[7] == SquareEnum.CROSS && squareEnums[8] == SquareEnum.CROSS ||
-                squareEnums[0] == SquareEnum.CROSS && squareEnums[3] == SquareEnum.CROSS && squareEnums[6] == SquareEnum.CROSS ||
-                squareEnums[1] == SquareEnum.CROSS && squareEnums[4] == SquareEnum.CROSS && squareEnums[7] == SquareEnum.CROSS ||
-                squareEnums[2] == SquareEnum.CROSS && squareEnums[5] == SquareEnum.CROSS && squareEnums[8] == SquareEnum.CROSS ||
-                squareEnums[0] == SquareEnum.CROSS && squareEnums[4] == SquareEnum.CROSS && squareEnums[8] == SquareEnum.CROSS ||
-                squareEnums[2] == SquareEnum.CROSS && squareEnums[4] == SquareEnum.CROSS && squareEnums[6] == SquareEnum.CROSS) {
+        } else if(squares[0].getSquareEnum() == SquareEnum.CROSS && squares[1].getSquareEnum() == SquareEnum.CROSS && squares[2].getSquareEnum() == SquareEnum.CROSS ||
+                squares[3].getSquareEnum() == SquareEnum.CROSS && squares[4].getSquareEnum() == SquareEnum.CROSS && squares[5].getSquareEnum() == SquareEnum.CROSS ||
+                squares[6].getSquareEnum() == SquareEnum.CROSS && squares[7].getSquareEnum() == SquareEnum.CROSS && squares[8].getSquareEnum() == SquareEnum.CROSS ||
+                squares[0].getSquareEnum() == SquareEnum.CROSS && squares[3].getSquareEnum() == SquareEnum.CROSS && squares[6].getSquareEnum() == SquareEnum.CROSS ||
+                squares[1].getSquareEnum() == SquareEnum.CROSS && squares[4].getSquareEnum() == SquareEnum.CROSS && squares[7].getSquareEnum() == SquareEnum.CROSS ||
+                squares[2].getSquareEnum() == SquareEnum.CROSS && squares[5].getSquareEnum() == SquareEnum.CROSS && squares[8].getSquareEnum() == SquareEnum.CROSS ||
+                squares[0].getSquareEnum() == SquareEnum.CROSS && squares[4].getSquareEnum() == SquareEnum.CROSS && squares[8].getSquareEnum() == SquareEnum.CROSS ||
+                squares[2].getSquareEnum() == SquareEnum.CROSS && squares[4].getSquareEnum() == SquareEnum.CROSS && squares[6].getSquareEnum() == SquareEnum.CROSS) {
             return "Player";
         }
         return "";
     }
 
-    public void squareClicked(Rectangle rectangle, int row, int column) throws IOException {
-        int index = row * 3 + column;
-        if (squareEnums[index] == SquareEnum.EMPTY) {
+    public void squareClicked(Rectangle rectangle, int index) throws IOException {
+        System.out.println("do i reach this again");
+        if (squares[index].getSquareEnum() == SquareEnum.EMPTY) {
             if (turn == SquareEnum.CROSS) {
                 Image img = new Image(getClass().getResource("/resources/images/cross.png").toString());
-
                 rectangle.setFill(new ImagePattern(img));
                 turn = SquareEnum.CIRCLE;
-                squareEnums[index] = SquareEnum.CROSS;
+                squares[index].setSquareEnum(SquareEnum.CROSS);
                 squaresOccupied += 1;
                 System.out.println(rectangle);
-                computer = new Computer(squareEnums);
+               // computer = new Computer(squareEnums);
             } else if (turn == SquareEnum.CIRCLE) {
                 Image img = new Image(getClass().getResource("/resources/images/circle.png").toString());
                 rectangle.setFill(new ImagePattern(img));
                 turn = SquareEnum.CROSS;
-                squareEnums[index] = SquareEnum.CIRCLE;
+                squares[index].setSquareEnum(SquareEnum.CIRCLE);
                 squaresOccupied += 1;
             }
         }
+        gameResult();
+    }
 
-        System.out.println("clicked "  + index);
-
-        if(hasPlayerWon().equals("AI")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("AI (circle) has won the game!");
-
-            alert.showAndWait();
-            for (int i = 0; i < 9; i++) {
-                squareEnums[i] = SquareEnum.EMPTY;
-                //Ff functie voor alle plaatjes legen
-            }
-            squaresOccupied = 0;
+    private void gameResult() {
+        if (hasPlayerWon().equals("AI")) {
+            alert("AI (circle) has won the game!");
         }
         if(hasPlayerWon().equals("Player")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Player (cross) has won the game!");
-
-            alert.showAndWait();
-
-            for (int i = 0; i < 9; i++) {
-                squareEnums[i] = SquareEnum.EMPTY;
-                //Ff functie voor alle plaatjes legen
-            }
-            squaresOccupied = 0;
+            alert("Player (cross) has won the game!");
         }
         if(squaresOccupied == 9) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Game ended as a draw!");
-
-            alert.showAndWait();
-
-            for (int i = 0; i < 9; i++) {
-                squareEnums[i] = SquareEnum.EMPTY;
-                //Ff functie voor alle plaatjes legen
-            }
+            alert("Game ended as a draw!");
         }
+    }
 
+    private void alert(String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+        resetField();
+    }
+
+    private void resetField() {
+        for (int i = 0; i < 9; i++) {
+            squares[i].setSquareEnum(SquareEnum.EMPTY);
+            squares[i].getRectangle().setFill(Color.WHITE);
+        }
+        squaresOccupied = 0;
     }
 }

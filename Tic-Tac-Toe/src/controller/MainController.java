@@ -21,6 +21,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import jdk.nashorn.internal.runtime.arrays.NumericElements;
+import model.Square;
 import model.TicTacToe;
 
 import java.io.IOException;
@@ -59,15 +60,17 @@ public class MainController implements Initializable{
     }
 
     private void drawField() {
+        Square[] squares = ticTacToe.getSquares();
         for (int i = 0 ; i < 3 ; i++) {
             for (int j = 0; j < 3; j++) {
                 Rectangle rectangle = new Rectangle(100, 100);
                 rectangle.setStroke(Color.ORANGE);
-                int row = i;
-                int column = j;
+                rectangle.setFill(Color.WHITE);
+                int index = i * 3 + j;
+                squares[index].setRectangle(rectangle);
                 rectangle.setOnMouseClicked(e -> {
                     try {
-                        ticTacToe.squareClicked(rectangle, row, column);
+                        ticTacToe.squareClicked(rectangle, index);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
