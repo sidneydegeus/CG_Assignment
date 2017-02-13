@@ -95,34 +95,29 @@ public class TicTacToe {
 
         int bestScore = (maximizingPlayer == true) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         int currentScore;
-        int bestRow = -1;
-        int bestCol = -1;
 
         if(nextMoves.isEmpty() || depth == 0){
-         return bestScore;
+         bestScore = score();
         } else {
-            for(Move move : nextMoves){
-                //TRY MOVE
-                //CODE
-                if (maximizingPlayer == true) {
-                    currentScore = miniMax(depth-1, false);
-                    if(currentScore > bestScore){
-                        bestScore = currentScore;
-                        bestRow = 0;
-                        bestCol = 0;
+            for(int i = 0; i < 9; i++) {
+                //Try move
+                if (squares[i].getSquareEnum() != SquareEnum.EMPTY) {
+                    squares[i].setSquareEnum(SquareEnum.CIRCLE);
+
+                    if (maximizingPlayer == true) {
+                        currentScore = miniMax(depth - 1, false);
+                        if (currentScore > bestScore) {
+                            bestScore = currentScore;
+                        }
+                    } else if (maximizingPlayer == false) {
+                        currentScore = miniMax(depth - 1, true);
+                        if (currentScore < bestScore) {
+                            bestScore = currentScore;
+                        }
                     }
-                }
-                else if (maximizingPlayer == false) {
-                    currentScore = miniMax(depth-1, true);
-                    if(currentScore < bestScore){
-                        bestScore = currentScore;
-                        bestRow = 0;
-                        bestCol = 0;
-                    }
+                    squares[i].setSquareEnum(SquareEnum.EMPTY);
                 }
             }
-            //UNDO MOVE
-            //CODE
         }
 
         return bestScore;
@@ -130,7 +125,9 @@ public class TicTacToe {
 
     private void computerTurn() throws IOException {
        System.out.println(miniMax(4, true));
+   //    System.out.println(getPossibleMoves());
     }
+
 
     private boolean findAndDoBestComputerMove(Square square) {
         return false;
