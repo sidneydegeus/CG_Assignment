@@ -67,6 +67,7 @@ public class TicTacToe {
 
                 // give turn to other
                 turn = SquareEnum.CIRCLE;
+                computerTurn();
             } else if (turn == SquareEnum.CIRCLE) {
                 Image img = new Image(getClass().getResource("/resources/images/circle.png").toString());
                 squares[index].getRectangle().setFill(new ImagePattern(img));
@@ -84,25 +85,51 @@ public class TicTacToe {
         if (hasPlayerWon().equals("AI"))
             return 10;
         else if (hasPlayerWon().equals("Player"))
-                return -10;
+             return -10;
         else
             return 0;
     }
 
-    private void miniMax(int depth){
+    private int miniMax(int depth, boolean maximizingPlayer){
         List<Move> nextMoves = getPossibleMoves();
 
-        int bestScore;
+        int bestScore = (maximizingPlayer == true) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         int currentScore;
+        int bestRow = -1;
+        int bestCol = -1;
 
         if(nextMoves.isEmpty() || depth == 0){
-            //
+         return bestScore;
+        } else {
+            for(Move move : nextMoves){
+                //TRY MOVE
+                //CODE
+                if (maximizingPlayer == true) {
+                    currentScore = miniMax(depth-1, false);
+                    if(currentScore > bestScore){
+                        bestScore = currentScore;
+                        bestRow = 0;
+                        bestCol = 0;
+                    }
+                }
+                else if (maximizingPlayer == false) {
+                    currentScore = miniMax(depth-1, true);
+                    if(currentScore < bestScore){
+                        bestScore = currentScore;
+                        bestRow = 0;
+                        bestCol = 0;
+                    }
+                }
+            }
+            //UNDO MOVE
+            //CODE
         }
 
+        return bestScore;
     }
 
     private void computerTurn() throws IOException {
-
+       System.out.println(miniMax(4, true));
     }
 
     private boolean findAndDoBestComputerMove(Square square) {
