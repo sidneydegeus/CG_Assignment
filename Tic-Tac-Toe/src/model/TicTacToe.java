@@ -34,6 +34,22 @@ public class TicTacToe {
         squaresOccupied = 0;
     }
 
+    public SquareEnum getTurn(){
+        return turn;
+    }
+
+    public void setTurn(SquareEnum turn){
+        this.turn = turn;
+    }
+
+    public SquareEnum getSquare(int index){
+        return squares[index].getSquareEnum();
+    }
+
+    public void setSquare(int index, SquareEnum squareEnum){
+        squares[index].setSquareEnum(squareEnum);
+    }
+
     public String hasPlayerWon(){
         if(squares[0].getSquareEnum() == SquareEnum.CIRCLE && squares[1].getSquareEnum() == SquareEnum.CIRCLE && squares[2].getSquareEnum() == SquareEnum.CIRCLE ||
                 squares[3].getSquareEnum() == SquareEnum.CIRCLE && squares[4].getSquareEnum() == SquareEnum.CIRCLE && squares[5].getSquareEnum() == SquareEnum.CIRCLE ||
@@ -58,16 +74,15 @@ public class TicTacToe {
     }
 
     public void squareClicked(int index) throws IOException {
+        System.out.println(getSquare(1));
         if (squares[index].getSquareEnum() == SquareEnum.EMPTY) {
             if (turn == SquareEnum.CROSS) {
                 Image img = new Image(getClass().getResource("/resources/images/cross.png").toString());
                 squares[index].getRectangle().setFill(new ImagePattern(img));
                 squares[index].setSquareEnum(SquareEnum.CROSS);
                 squaresOccupied += 1;
-
                 // give turn to other
                 turn = SquareEnum.CIRCLE;
-                computerTurn();
             } else if (turn == SquareEnum.CIRCLE) {
                 Image img = new Image(getClass().getResource("/resources/images/circle.png").toString());
                 squares[index].getRectangle().setFill(new ImagePattern(img));
@@ -75,62 +90,46 @@ public class TicTacToe {
                 squaresOccupied += 1;
 
                 turn = SquareEnum.CROSS;
-             //   computerTurn();
             }
         }
         gameResult();
+        System.out.println(getPossibleMoves());
     }
 
-    private int score(){
-        if (hasPlayerWon().equals("AI"))
-            return 10;
-        else if (hasPlayerWon().equals("Player"))
-             return -10;
-        else
-            return 0;
-    }
-
-    private int miniMax(int depth, boolean maximizingPlayer){
+    public int miniMax(int depth, boolean maximizingPlayer) {
         List<Move> nextMoves = getPossibleMoves();
 
-        int bestScore = (maximizingPlayer == true) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        int currentScore;
-
-        if(nextMoves.isEmpty() || depth == 0){
-         bestScore = score();
-        } else {
-            for(int i = 0; i < 9; i++) {
-                //Try move
-                if (squares[i].getSquareEnum() != SquareEnum.EMPTY) {
-                    squares[i].setSquareEnum(SquareEnum.CIRCLE);
-
-                    if (maximizingPlayer == true) {
-                        currentScore = miniMax(depth - 1, false);
-                        if (currentScore > bestScore) {
-                            bestScore = currentScore;
-                        }
-                    } else if (maximizingPlayer == false) {
-                        currentScore = miniMax(depth - 1, true);
-                        if (currentScore < bestScore) {
-                            bestScore = currentScore;
-                        }
-                    }
-                    squares[i].setSquareEnum(SquareEnum.EMPTY);
-                }
-            }
+        if (hasPlayerWon().equals("AI")) {
+            return 100;
+        } else if (hasPlayerWon().equals("Player")) {
+            return -100;
+        } else if (squaresOccupied == 9 || depth == 0) {
+            return 0;
         }
 
-        return bestScore;
-    }
+        Integer bestScore = null;
 
-    private void computerTurn() throws IOException {
-       System.out.println(miniMax(4, true));
-   //    System.out.println(getPossibleMoves());
-    }
+        for (int i = 0; i < nextMoves.size(); i++) {
+            if (maximizingPlayer == true) {
+                setSquare(i, SquareEnum.CIRCLE);
+                Integer currentScore = miniMax(depth - 1, false);
 
+                if (currentScore > bestScore) {
+                    bestScore = currentScore;
+                }
 
-    private boolean findAndDoBestComputerMove(Square square) {
-        return false;
+                else if (maximizingPlayer == false) {
+                    setSquare(i, SquareEnum.CROSS);
+                    currentScore = miniMax(depth - 1, true);
+
+                    if (currentScore < bestScore) {
+                        bestScore = currentScore;
+                    }
+                }
+            }
+            setSquare(i, SquareEnum.EMPTY);
+        }
+        return bestScore + (getTurn() == SquareEnum.CIRCLE ? - 1 : 1);
     }
 
     private List<Move> getPossibleMoves() {
