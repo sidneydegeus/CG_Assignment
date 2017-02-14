@@ -1,6 +1,5 @@
 define(['threejs'], function ($) {
 
-    var clock;
     var sky;
     var dirLight;
 
@@ -58,25 +57,19 @@ define(['threejs'], function ($) {
         sky = new THREE.Mesh(skyGeometry, skyMat);
         scene.add(sky);
 
-        //Create a clock
-        clock = new THREE.Clock();
-
-        return {
-            initLight: function (scene, renderer) {
-                initLight(scene, renderer);
-            },
-            getSky: function () {
-                return sky;
-            },
-            getDirLight: function () {
-                return dirLight;
-            },
-            getClock: function () {
-                return clock;
-            }
-        }
     }
 
+    return {
+        initLight: function (scene, renderer) {
+            initLight(scene, renderer);
+        },
+        getSky: function () {
+            return sky;
+        },
+        getDirLight: function () {
+            return dirLight;
+        }
+    }
 });
 
 
