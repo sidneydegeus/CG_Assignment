@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Sample Project</title>
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+		</style>
+    </head>
+	
+    <body>
+    <script type="x-shader/x-vertex" id="vertexShader">
+            varying vec3 worldPosition;
+            void main() {
+                vec4 mPosition = modelMatrix * vec4( position, 1.0 );
+                gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+                worldPosition = mPosition.xyz;
+            }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentShader">
+            uniform vec3 topColor;
+            uniform vec3 bottomColor;
+            uniform float offset;
+            uniform float exponent;
+            varying vec3 worldPosition;
+            void main() {
+                float h = normalize( worldPosition + offset ).y;
+                gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( h, exponent ), 0.0 ) ), 1.0 );
+            }
+    </script>
+
+    <script data-main="scripts/main" src="scripts/require.js"></script>
+    <script>
+        require(['main'], function () {
+            require(['init']);
+        });
+    </script>
+    </body>
+</html>
