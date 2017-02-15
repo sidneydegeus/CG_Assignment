@@ -3,7 +3,7 @@
 //This will be the street.
 function initStreet(scene) {
     //Cube and cube3 will be the street for the walkers. (NL: Stoep)
-    var cube1Geometry = new THREE.BoxGeometry(93, 0.2, 3.3);
+    var cube1Geometry = new THREE.BoxGeometry(200, 0.2, 3.3);
     var cube1Material = new THREE.MeshBasicMaterial({
         map: THREE.ImageUtils.loadTexture('img/wall.jpg')
     });
@@ -14,7 +14,7 @@ function initStreet(scene) {
     scene.add(cube1);
 
     //This will be the street for the drivers
-    var cube2Geometry = new THREE.BoxGeometry(93, 0.1, 6.5);
+    var cube2Geometry = new THREE.BoxGeometry(200, 0.1, 6.5);
     var cube2Material = new THREE.MeshBasicMaterial({
         map: THREE.ImageUtils.loadTexture('img/straat.jpg')
     });
@@ -25,7 +25,7 @@ function initStreet(scene) {
     scene.add(cube2);
 
     //This will be the street for the walkers (NL: Stoep)
-    var cube3Geometry = new THREE.BoxGeometry(93, 0.1, 3.3);
+    var cube3Geometry = new THREE.BoxGeometry(200, 0.1, 3.3);
     var cube3Material = new THREE.MeshBasicMaterial({
         map: THREE.ImageUtils.loadTexture('img/wall.jpg')
     });
