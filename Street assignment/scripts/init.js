@@ -1,6 +1,7 @@
 define([
     'threejs',
-    'orbitcontrols',
+    'orbitControls',
+    'lib/FirstPersonControls',
     // initialization imports
     'initialize/scene',
     'initialize/camera',
@@ -12,7 +13,8 @@ define([
     'animation/daytime_animation'
 ], function($) {
 
-    var scene, camera, renderer, controls;
+    var scene, camera, renderer;
+    var controls, firstPersonControls;
     var light, dirLight;
 
     var cars = [];
@@ -26,6 +28,7 @@ define([
     camera = initCamera();
     renderer = initRenderer();
     controls = initControls(camera);
+    firstPersonControls = initFirstPersonControls(camera);
     initLight(scene, renderer);
     initAssets();
 
@@ -56,6 +59,7 @@ define([
         moveCar(cars, planeBox);
         // updating the scene based on controls
         controls.update();
+        firstPersonControls.update( delta );
         // rendering the scene
         renderer.render(scene, camera);
     }

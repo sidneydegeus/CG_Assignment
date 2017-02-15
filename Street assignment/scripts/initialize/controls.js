@@ -16,3 +16,11 @@ function initControls(camera) {
     controls.noKeys = true;
     return controls;
 }
+
+function initFirstPersonControls(camera) {
+    const firstPersonControls = new THREE.FirstPersonControls( camera );
+    firstPersonControls.lookSpeed = 0.02;
+    firstPersonControls.movementSpeed = 25;
+
+    return firstPersonControls;
+}
