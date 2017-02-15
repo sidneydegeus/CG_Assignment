@@ -18,8 +18,8 @@ function initControls(camera) {
 }
 
 function initFirstPersonControls(camera) {
-    const firstPersonControls = new THREE.FirstPersonControls( camera );
-    firstPersonControls.lookSpeed = 0.02;
+    const firstPersonControls = new THREE.FirstPersonControls(camera);
+    firstPersonControls.lookSpeed = 0.1;
     firstPersonControls.movementSpeed = 25;
 
     return firstPersonControls;

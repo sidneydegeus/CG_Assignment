@@ -58,8 +58,8 @@ define([
         moveSun(sun, time, delta);
         moveCar(cars, planeBox);
         // updating the scene based on controls
-        controls.update();
-        firstPersonControls.update( delta );
+        //controls.update();
+        firstPersonControls.update(delta);
         // rendering the scene
         renderer.render(scene, camera);
     }
