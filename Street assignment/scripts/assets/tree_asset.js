@@ -6,7 +6,7 @@ function createTree(xValue, yValue, zValue, scene) {
     var cylinderMaterial = new THREE.MeshLambertMaterial({color: 0x5F1700});
     var cylinder = new THREE.Mesh(cylinderGeometry,cylinderMaterial);
     cylinder.position.x = xValue;
-    cylinder.position.y = yValue;
+    cylinder.position.y = yValue + 1.0;
     cylinder.position.z = zValue;
     scene.add(cylinder);
 
@@ -14,7 +14,7 @@ function createTree(xValue, yValue, zValue, scene) {
     var materialLambert = new THREE.MeshLambertMaterial({color: 0x458B00});
     var sphere = new THREE.Mesh(geometrySphere, materialLambert);
     sphere.position.x = xValue;
-    sphere.position.y = yValue + 3.0;
+    sphere.position.y = yValue + 4.0;
     sphere.position.z = zValue;
     scene.add(sphere);
 }
