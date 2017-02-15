@@ -92,6 +92,7 @@ function createCar(xValue, yValue, zValue, direction, isDriving, scene) {
 
     scene.add(carBody);
     scene.add(carRoof);
+
     // return a new car object with the car body, car roof, car wheels etc...
     return new car(carBody, carRoof, wheels, carLights, direction, isDriving, spotlights);
 }
