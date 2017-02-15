@@ -18,12 +18,30 @@ define([
         sun = initSun(scene);
         initStreet(scene);
 
+
+
+        var loader = new THREE.ObjectLoader();
+        loader.load("models/camero-2010-low-poly.json",function ( obj ) {
+            //Create two driving cars, x, y, z, left/right, isDriving
+            cars[0] = createCar(-11, 1, -1, false, true, scene, obj); // true is to the right
+        });
+        loader.load("models/camero-2010-low-poly.json",function ( obj ) {
+            //Create two driving cars, x, y, z, left/right, isDriving
+            cars[1] = createCar(11, 1, -1, false, true, scene, obj); // false is to the left
+        });
+
+     /*   forLoop(createaRandomCar, scene);*/
+
+    }
+
+/*    function forLoop(callback, scene) {
         //Create houses, starts at x-45 every house +3 x for nice placement
         //It starts at x:-45 because it will start at the edge
         var xPlace = -90;
 
         //carint, because every car have an own integer it will start at 2 (0, 1 are already driving)
         var carInt = 2;
+
         for (var i = 0; i < 31; i++) {
             if(i % 3 == 0) {
                 //Create trees at two different places. At the front side and the backside
@@ -34,27 +52,35 @@ define([
                 //Because sometimes the owner is not home
                 if(i < 28) {
                     if(getRandomInt(1,2) == 1) {
-                        cars[carInt] = createCar(xPlace + 2, 1, -2.8, false, false, scene); // false is to the left
-                        carInt += 1;
+
+                            callback(carInt, xPlace, scene);
+                            carInt += 1;
+
                     }
                     if(getRandomInt(1,2) == 1) {
-                        cars[carInt] = createCar(xPlace + 4, 1, -2.8, false, false, scene); // false is to the left
-                        carInt += 1;
+                            callback(carInt, xPlace, scene);
+                            carInt += 1;
                     }
                     if(getRandomInt(1,2) == 1) {
-                        cars[carInt] = createCar(xPlace + 6, 1, -2.8, false, false, scene); // false is to the left
-                        carInt += 1;
+
+                            callback(carInt, xPlace, scene);
+                            carInt += 1;
+
                     }
                     if(getRandomInt(1,2) == 1) {
-                        cars[carInt] = createCar(xPlace + 2, 1, 0.7, false, false, scene); // false is to the left
-                        carInt += 1;
+
+                            callback(carInt, xPlace, scene);
+                            carInt += 1;
+
                     }
                     if(getRandomInt(1,2) == 1) {
-                        cars[carInt] = createCar(xPlace + 4, 1, 0.7, false, false, scene); // false is to the left
-                        carInt += 1;
+
+                            callback(carInt, xPlace, scene);
+                            carInt += 1;
+
                     }
                     if(getRandomInt(1,2) == 1) {
-                        cars[carInt] = createCar(xPlace + 6, 1, 0.7, false, false, scene); // false is to the left
+                        callback(carInt, xPlace, scene);
                         carInt += 1;
                     }
                 }
@@ -67,11 +93,15 @@ define([
             //Every three x places you want another house
             xPlace += 6;
         }
+    }*/
 
-        //Create two driving cars, x, y, z, left/right, isDriving
-        cars[0] = createCar(-11, 1, -1, false, true, scene); // true is to the right
-        cars[1] = createCar(11, 1, -1, false, true, scene); // false is to the left
-    }
+/*    function createaRandomCar(index, xPlace, scene) {
+        var loader = new THREE.ObjectLoader();
+        loader.load("models/camero-2010-low-poly.json",function ( obj ) {
+            //Create two driving cars, x, y, z, left/right, isDriving
+            cars[index] = createCar(xPlace + 6, 1, 0.7, false, false, scene); // false is to the left
+        });
+    }*/
 
     return {
         initAssets: function(scene) {

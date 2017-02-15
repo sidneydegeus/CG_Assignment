@@ -14,15 +14,6 @@ function changeDayTime(time, dirLight, sky, scene, cars) {
         var f = 1;
         dirLight.intensity = f;
         dirLight.shadowDarkness = f*0.7;
-        for (var i = 0; i < cars.length; i++) {
-            if (cars[i].isLightsOn) {
-                cars[i].isLightssOn = false;
-                scene.remove(cars[i].carSpotlights[0]);
-                scene.remove(cars[i].carSpotlights[1]);
-            }
-            cars[i].carLights[0].material.color.setHex(0x8c8c8c);
-            cars[i].carLights[1].material.color.setHex(0x8c8c8c);
-        }
     }
     else if (nsin < 0.2 && nsin > 0.0 ) {
         var f = nsin/0.2;
@@ -39,16 +30,5 @@ function changeDayTime(time, dirLight, sky, scene, cars) {
         dirLight.shadowDarkness = f*0.7;
         sky.material.uniforms.topColor.value.setRGB(0,0,0);
         sky.material.uniforms.bottomColor.value.setRGB(0,0,0);
-        for (var i = 0; i < cars.length; i++) {
-            if (cars[i].isDriving) {
-                if (!cars[i].isLightsOn) {
-                    cars[i].isLightssOn = true;
-                    scene.add(cars[i].carSpotlights[0]);
-                    scene.add(cars[i].carSpotlights[1]);
-                }
-                cars[i].carLights[0].material.color.setHex(0xffff33);
-                cars[i].carLights[1].material.color.setHex(0xffff33);
-            }
-        }
     }
 }
