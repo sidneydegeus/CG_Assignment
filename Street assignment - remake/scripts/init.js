@@ -26,7 +26,7 @@ define([
     camera = initCamera();
     renderer = initRenderer();
     controls = initControls(camera);
-    initLight(scene, renderer); // this one defines the vars clock, sky and dirlight...
+    initLight(scene, renderer);
     initAssets();
 
     function initLight(scene, renderer) {

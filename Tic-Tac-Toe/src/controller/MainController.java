@@ -4,23 +4,12 @@ package controller;
  * Created by jorda on 1-2-2017.
  */
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import jdk.nashorn.internal.runtime.arrays.NumericElements;
 import model.Square;
 import model.TicTacToe;
 
@@ -60,7 +49,7 @@ public class MainController implements Initializable{
     }
 
     private void drawField() {
-        Square[] squares = ticTacToe.getSquares();
+        Square[] squares = ticTacToe.getBoard();
         for (int i = 0 ; i < 3 ; i++) {
             for (int j = 0; j < 3; j++) {
                 Rectangle rectangle = new Rectangle(100, 100);
