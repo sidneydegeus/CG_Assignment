@@ -110,19 +110,13 @@ public class TicTacToe {
         if (nextMoves.isEmpty())
             return 0;
 
-
         if (hasPlayerWon().equals("AI")) {
-            return 100;
+            return 1;
         } else if (hasPlayerWon().equals("Player")) {
-            return -100;
+            return -1;
         }
 
         List<Integer> scores = new ArrayList<>();
-
-/*        Integer bestScore = null;
-        //int currentScore; // no current score to start with
-        int bestRow = -1; // there's no possible best row because it hasn't been checked yet here
-        int bestCol = -1; // same for bestCol. -1 indicates this*/
 
         for (Move move : nextMoves) {
             int index = move.getRow() * 3 + move.getCol();
