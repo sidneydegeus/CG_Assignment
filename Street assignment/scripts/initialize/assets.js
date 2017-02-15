@@ -30,11 +30,11 @@ define([
             cars[1] = createCar(11, 1, -1, false, true, scene, obj); // false is to the left
         });
 
-     /*   forLoop(createaRandomCar, scene);*/
+        forLoop(createaRandomCar, scene);
 
     }
 
-/*    function forLoop(callback, scene) {
+    function forLoop(callback, scene) {
         //Create houses, starts at x-45 every house +3 x for nice placement
         //It starts at x:-45 because it will start at the edge
         var xPlace = -90;
@@ -93,15 +93,15 @@ define([
             //Every three x places you want another house
             xPlace += 6;
         }
-    }*/
+    }
 
-/*    function createaRandomCar(index, xPlace, scene) {
+    function createaRandomCar(index, xPlace, scene) {
         var loader = new THREE.ObjectLoader();
         loader.load("models/camero-2010-low-poly.json",function ( obj ) {
             //Create two driving cars, x, y, z, left/right, isDriving
             cars[index] = createCar(xPlace + 6, 1, 0.7, false, false, scene); // false is to the left
         });
-    }*/
+    }
 
     return {
         initAssets: function(scene) {
