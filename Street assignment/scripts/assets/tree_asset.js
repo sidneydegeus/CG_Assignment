@@ -1,25 +1,4 @@
-/*define(['threejs'], function($) {
 
-    function initTrees(scene) {
-        var xPlace = -90;
-        for (var i = 0; i < 31; i++) {
-            if (i % 3 == 0) {
-                createTree(xPlace-3, 1, -5.6, scene);
-                createTree(xPlace-3, 1, 1.9, scene);
-            }
-            //Every three x places you want another house
-            xPlace += 6;
-        }
-    }
-
-
-
-    return {
-        initTrees: function(scene) {
-            initTrees(scene);
-        }
-    }
-});*/
 
 // createTree function creates a tree at the given x, y, z coordinates
 function createTree(xValue, yValue, zValue, scene) {

@@ -1,16 +1,4 @@
-/*define(['threejs'], function($) {
-    var sun;
 
-
-    return {
-        initSun: function(scene) {
-            initSun(scene);
-        },
-        getSun: function() {
-            return sun;
-        }
-    }
-});*/
 
 // initSun function initiates the sun
 //The sun is a sphere and will be rotating

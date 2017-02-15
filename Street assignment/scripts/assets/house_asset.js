@@ -1,22 +1,3 @@
-/*define(['threejs'], function($) {
-
-    function initHouses(scene) {
-        var xPlace = -90;
-        for (var i = 0; i < 31; i++) {
-            //2 house methods because you need to rotate the house for the front and the back
-            createHouse(xPlace, 2, -10.6, false, scene);
-            createHouse(xPlace, 2, 6.6, true, scene);
-
-            //Every three x places you want another house
-            xPlace += 6;
-        }
-    }
-    return {
-        initHouses: function(scene) {
-            initHouses(scene);
-        }
-    }
-});*/
 
 //This is the function that creates a house for the front side and back side (using a if statement rotated)
 function createHouse(xValue, yValue, zValue, rotated, scene){

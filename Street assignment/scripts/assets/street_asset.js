@@ -1,13 +1,4 @@
-/*define(['threejs'], function($) {
 
-
-
-    return {
-        initStreet: function(scene) {
-            initStreet(scene);
-        }
-    }
-});*/
 
 //This will be the street.
 function initStreet(scene) {
