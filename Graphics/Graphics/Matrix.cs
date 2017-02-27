@@ -74,7 +74,7 @@ namespace Graphics
 
         public static Matrix Scale(float s)
         {
-            Matrix m = new Matrix();
+            Matrix m = new Matrix(s);
             m.mat[2, 2] = 1;
             return m;
         }

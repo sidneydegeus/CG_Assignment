@@ -19,15 +19,15 @@ namespace Graphics
             this.color = color;
             this.size = size;
 
-            vb.Add(new Vector2D(100, 200));
-            vb.Add(new Vector2D(200, 200));
-            vb.Add(new Vector2D(200, 100));
-            vb.Add(new Vector2D(100, 100));
+            //vb.Add(new Vector2D(100, 200));
+            //vb.Add(new Vector2D(200, 200));
+            //vb.Add(new Vector2D(200, 100));
+            //vb.Add(new Vector2D(100, 100));
 
-            //vb.Add(new Vector2D(-size, size));
-            //vb.Add(new Vector2D(size, size));
-            //vb.Add(new Vector2D(size, -size));
-            //vb.Add(new Vector2D(-size, -size));
+            vb.Add(new Vector2D(-size, size));
+            vb.Add(new Vector2D(size, size));
+            vb.Add(new Vector2D(size, -size));
+            vb.Add(new Vector2D(-size, -size));
         }
 
         public void Draw(System.Drawing.Graphics g, List<Vector2D> vb)
