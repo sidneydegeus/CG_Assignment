@@ -1,0 +1,5 @@
+C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\bin\Debug\Graphics.exe.config
+C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\obj\Debug\Graphics.csprojResolveAssemblyReference.cache
+C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\obj\Debug\Graphics.Form1.resources
+C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\obj\Debug\Graphics.Properties.Resources.resources
+C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\obj\Debug\Graphics.csproj.GenerateResource.Cache
