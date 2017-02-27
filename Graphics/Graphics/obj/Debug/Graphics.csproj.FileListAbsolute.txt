@@ -3,3 +3,12 @@ C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\obj\Debug\Graphics.csprojRes
 C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\obj\Debug\Graphics.Form1.resources
 C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\obj\Debug\Graphics.Properties.Resources.resources
 C:\Users\jorda\Source\Repos\Minor\Graphics\Graphics\obj\Debug\Graphics.csproj.GenerateResource.Cache
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\bin\Debug\Graphics.exe.config
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\obj\Debug\Graphics.csprojResolveAssemblyReference.cache
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\obj\Debug\Graphics.Form1.resources
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\obj\Debug\Graphics.Properties.Resources.resources
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\obj\Debug\Graphics.csproj.GenerateResource.Cache
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\bin\Debug\Graphics.exe
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\bin\Debug\Graphics.pdb
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\obj\Debug\Graphics.exe
+D:\Users\Sidney\Documents\CG_Assignment\Graphics\Graphics\obj\Debug\Graphics.pdb

@@ -40,7 +40,7 @@ namespace Graphics
                 vb.Add(vp);
             }
 
-            vb = new ViewportTransformation(800, 600, vb);
+            vb = ViewportTransformation(800, 600, vb);
             sq2.Draw(e.Graphics, vb);
         }
         
