@@ -7,22 +7,23 @@ using System.Threading.Tasks;
 
 namespace Graphics
 {
-    class Square
+    class Pentagon
     {
         private int size;
         Color color;
 
         public List<Vector2D> vb = new List<Vector2D>();
 
-        public Square(Color color, int size = 100)
+        public Pentagon(Color color, int size = 10)
         {
             this.color = color;
             this.size = size;
 
-            vb.Add(new Vector2D(100, 200));
-            vb.Add(new Vector2D(200, 200));
-            vb.Add(new Vector2D(200, 100));
-            vb.Add(new Vector2D(100, 100));
+            vb.Add(new Vector2D(225, 350));
+            vb.Add(new Vector2D(350, 350));
+            vb.Add(new Vector2D(290, 180));
+            vb.Add(new Vector2D(180, 250));
+            vb.Add(new Vector2D(400, 250));
 
             //vb.Add(new Vector2D(-size, size));
             //vb.Add(new Vector2D(size, size));
@@ -34,8 +35,9 @@ namespace Graphics
         {
             Pen pen = new Pen(color, 4f);
             g.DrawLine(pen, vb[0].x, vb[0].y, vb[1].x, vb[1].y);
-            g.DrawLine(pen, vb[1].x, vb[1].y, vb[2].x, vb[2].y);
-            g.DrawLine(pen, vb[2].x, vb[2].y, vb[3].x, vb[3].y);
+            g.DrawLine(pen, vb[4].x, vb[3].y, vb[1].x, vb[1].y);
+            g.DrawLine(pen, vb[2].x, vb[2].y, vb[3].x, vb[4].y);
+            g.DrawLine(pen, vb[4].x, vb[4].y, vb[2].x, vb[2].y);
             g.DrawLine(pen, vb[3].x, vb[3].y, vb[0].x, vb[0].y);
         }
     }

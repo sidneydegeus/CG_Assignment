@@ -13,6 +13,7 @@ namespace Graphics
     public partial class Form1 : Form
     {
         Square sq1 = new Square(Color.Red);
+        Pentagon pg1 = new Pentagon(Color.Black);
         Square sq2 = new Square(Color.Blue);
         public Form1()
         {
@@ -31,6 +32,7 @@ namespace Graphics
             List<Vector2D> vb;
             vb = ViewportTransformation(800, 600, sq1.vb);
             sq1.Draw(e.Graphics, sq1.vb);
+            pg1.Draw(e.Graphics, pg1.vb);
 
             Matrix S = Matrix.Scale(2.5f);
             vb = new List<Vector2D>();
@@ -40,8 +42,8 @@ namespace Graphics
                 vb.Add(vp);
             }
 
-            vb = ViewportTransformation(800, 600, vb);
-            sq2.Draw(e.Graphics, vb);
+            //vb = ViewportTransformation(800, 600, vb);
+          //  sq2.Draw(e.Graphics, vb);
         }
         
         public static List<Vector2D> ViewportTransformation(float width, float height, List<Vector2D> vb)
