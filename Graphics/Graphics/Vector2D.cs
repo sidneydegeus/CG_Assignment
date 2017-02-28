@@ -27,5 +27,13 @@
         {
             return v1.x * v2.x + v1.y * v2.y;
         }
+
+        public void Transpose() {
+            Matrix matrix = new Graphics.Matrix(this);
+            Vector2D vector = Matrix.Transpose(matrix);
+            this.x = vector.x;
+            this.y = vector.y;
+            this.w = vector.w;
+        }
     }
 }

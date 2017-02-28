@@ -12,6 +12,7 @@ namespace Graphics
 {
     public partial class Form1 : Form
     {
+        bool rotating = false;
 
         Square sq1 = new Square(Color.Red);
         Pentagon pg1 = new Pentagon(Color.Black);
@@ -40,6 +41,7 @@ namespace Graphics
             foreach (Vector2D v in sq2.vb)
             {
                 Vector2D vp = S * v;
+                
                 vb.Add(vp);
             }
 
@@ -60,6 +62,25 @@ namespace Graphics
             }
 
             return res;
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar.ToString() == "r") {
+                if (rotating)
+                    rotating = false;
+                else
+                    rotating = true;
+
+                foreach (Vector2D v in sq2.vb) {
+                    v.x += 5f;
+                    v.y -= 5f;
+                }
+                Invalidate();
+            }
+
+            if (e.KeyChar.ToString() == "s") {
+                // scale shit
+            }
         }
     }
 }

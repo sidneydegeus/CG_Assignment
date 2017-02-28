@@ -22,14 +22,14 @@ namespace Graphics
 
         public Matrix(float f = 1.0f) :
             this (f, 0, 0,
-                0, f, 0,
-                0, 0, f)
+                  0, f, 0,
+                  0, 0, f)
         { }
 
         public Matrix(Vector2D v) :
             this(v.x, 0, 0,
-                v.y, 0, 0,
-                v.w, 0, 0){
+                 v.y, 0, 0,
+                 v.w, 0, 0) {
         }
 
         public static Vector2D ToVector2D(Matrix m1)
@@ -77,6 +77,23 @@ namespace Graphics
             Matrix m = new Matrix(s);
             m.mat[2, 2] = 1;
             return m;
+        }
+
+        public static Vector2D Transpose(Matrix m) {
+            int w = m.mat.GetLength(0);
+            int h = m.mat.GetLength(1);
+
+            float[,] result = new float[h, w];
+
+            for (int i = 0; i < w; i++) {
+                for (int j = 0; j < h; j++) {
+                    result[j, i] = m.mat[i, j];
+                }
+            }
+
+            m.mat = result;
+
+            return ToVector2D(m);
         }
 
         public override string ToString()
