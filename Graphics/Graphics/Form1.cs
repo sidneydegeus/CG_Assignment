@@ -72,14 +72,35 @@ namespace Graphics
                     rotating = true;
 
                 foreach (Vector2D v in sq2.vb) {
-                    v.x += 5f;
-                    v.y -= 5f;
+                    var ca = Math.Cos(Math.PI / 180);
+                    var sa = Math.Sin(Math.PI / 180);
+
+                    v.x = v.x - (float) sa * v.y;
+                    v.y = (float)sa * v.x + (float)ca * v.y;
+
                 }
                 Invalidate();
             }
 
             if (e.KeyChar.ToString() == "s") {
                 // scale shit
+                foreach (Vector2D v in sq2.vb)
+                {
+                    v.x *= 0.99f;
+                    v.y *= 0.99f;
+                }
+                Invalidate();
+            }
+
+            if (e.KeyChar.ToString() == "d")
+            {
+                // scale shit
+                foreach (Vector2D v in sq2.vb)
+                {
+                    v.x *= 1.01f;
+                    v.y *= 1.01f;
+                }
+                Invalidate();
             }
         }
     }
