@@ -1,0 +1,5 @@
+﻿  main.cpp
+c:\users\jorda\desktop\lecture5skeletonstart\program1\main.cpp(34): warning C4838: conversion from 'double' to 'const GLfloat' requires a narrowing conversion
+c:\users\jorda\desktop\lecture5skeletonstart\program1\main.cpp(34): warning C4305: 'initializing': truncation from 'double' to 'const GLfloat'
+  Program1.vcxproj -> C:\Users\jorda\Desktop\Lecture5SkeletonStart\Debug\Program1.exe
+  Program1.vcxproj -> C:\Users\jorda\Desktop\Lecture5SkeletonStart\Debug\Program1.pdb (Full PDB)
