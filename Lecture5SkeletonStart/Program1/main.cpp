@@ -8,6 +8,7 @@
 
 using namespace std;
 
+bool* keyStates = new bool[256]; // Create an array of boolean values of length 256 (0-255)  
 const char *FSH = "fragmentshader.fsh";
 const char *VSH = "vertexshader.vsh";
 
@@ -29,8 +30,23 @@ const GLfloat colors[] =
 GLuint shaderID;
 GLuint vbo1, vbo2;
 
+void keyOperations(void) {
+	if (keyStates['a']) { // If the 'a' key has been pressed  
+		cout << "test";			  // Perform 'a' key operations  
+	}
+}
+
+void keyPressed(unsigned char key, int x, int y) {
+	keyStates[key] = true; // Set the state of the current key to pressed  
+}
+
+void keyUp(unsigned char key, int x, int y) {
+	keyStates[key] = false; // Set the state of the current key to not pressed  
+}
+
 void Render()
 {
+	keyOperations();
 	static const GLfloat blue[] = { 0.0, 0.0, 0.4, 1.0 };
 	glClearBufferfv(GL_COLOR, 0, blue);
 	
@@ -47,7 +63,7 @@ void Render()
 	glVertexAttribPointer(colorID, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(colorID);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	
+
 	//glm::vec4 position = glm::vec4(0.0f, 0.0f, 0.5f, 1.0f);
 	//GLuint positionID = glGetUniformLocation(shaderID, "position");
 	//glUniform4fv(positionID, 1, glm::value_ptr(position));
@@ -90,7 +106,13 @@ int main(int argc, char ** argv)
 
 	glutDisplayFunc(Render);
 
+	glutKeyboardFunc(keyPressed); // Tell GLUT to use the method "keyPressed" for key presses 
+
+	glutKeyboardUpFunc(keyUp); // Tell GLUT to use the method "keyUp" for key up events  
+
 	glewInit();
+
+	glutMainLoop();
 
 #pragma endregion
 
