@@ -15,7 +15,8 @@ void Render()
 	const glm::vec4 blue = glm::vec4(0.0, 0.0, 0.4, 1.0);
 	glClearBufferfv(GL_COLOR, 0, glm::value_ptr(blue));
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glLineWidth(8.f);
+	glDrawArrays(GL_LINE_LOOP, 0, 16);
 
 	glutSwapBuffers();
 }
