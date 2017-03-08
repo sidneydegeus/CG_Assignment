@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\jorda\desktop\minor git\program10\program10\main.cpp(69): warning C4305: '-=': truncation from 'double' to 'float'
+  Program10.vcxproj -> C:\Users\jorda\Desktop\Minor GIT\Program10\Debug\Program10.exe
+  Program10.vcxproj -> C:\Users\jorda\Desktop\Minor GIT\Program10\Debug\Program10.pdb (Full PDB)
