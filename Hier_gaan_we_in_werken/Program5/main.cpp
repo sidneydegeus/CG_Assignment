@@ -10,15 +10,34 @@ using namespace std;
 const char * FSH = "fragmentshader.fsh";
 const char * VSH = "vertexshader.vsh";
 
+glm::vec4 blue = glm::vec4(0.0, 0.0, 0.4, 1.0);
+
+void keyboard(unsigned char key, int x, int y);
+
 void Render()
 {
-	const glm::vec4 blue = glm::vec4(0.0, 0.0, 0.4, 1.0);
+	//const glm::vec4 blue = glm::vec4(0.0, 0.0, 0.4, 1.0);
 	glClearBufferfv(GL_COLOR, 0, glm::value_ptr(blue));
 
 	glLineWidth(8.f);
 	glDrawArrays(GL_LINE_LOOP, 0, 16);
 
 	glutSwapBuffers();
+}
+
+void keyboard(unsigned char key, int x, int y) {
+	switch (key) {
+		case 'r':
+			blue = glm::vec4(1.0, 0.4, 0.0, 0.0);
+			break;
+		case 's':
+
+			break;
+
+		default:
+			break;
+	}
+	glutPostRedisplay();
 }
 
 int main(int argc, char ** argv)
@@ -47,6 +66,7 @@ int main(int argc, char ** argv)
 	glUseProgram(shaderID);
 	#pragma endregion
 
+	glutKeyboardFunc(keyboard);
 	HWND hWnd = GetConsoleWindow();
 	ShowWindow(hWnd, SW_HIDE);
 
