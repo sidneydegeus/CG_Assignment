@@ -1,5 +1,5 @@
 ﻿  main.cpp
-c:\users\jorda\desktop\minor git\program6\program6\main.cpp(38): warning C4838: conversion from 'double' to 'const GLfloat' requires a narrowing conversion
-c:\users\jorda\desktop\minor git\program6\program6\main.cpp(38): warning C4305: 'initializing': truncation from 'double' to 'const GLfloat'
-  Program6.vcxproj -> C:\Users\jorda\Desktop\Minor GIT\Program6\Debug\Program6.exe
-  Program6.vcxproj -> C:\Users\jorda\Desktop\Minor GIT\Program6\Debug\Program6.pdb (Full PDB)
+d:\users\sidney\documents\cg_assignment\deze doen we\program6\main.cpp(44): warning C4838: conversion from 'double' to 'const GLfloat' requires a narrowing conversion
+d:\users\sidney\documents\cg_assignment\deze doen we\program6\main.cpp(44): warning C4305: 'initializing': truncation from 'double' to 'const GLfloat'
+  Program6.vcxproj -> D:\Users\Sidney\Documents\CG_Assignment\Deze doen we\Debug\Program6.exe
+  Program6.vcxproj -> D:\Users\Sidney\Documents\CG_Assignment\Deze doen we\Debug\Program6.pdb (Full PDB)
