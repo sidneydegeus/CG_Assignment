@@ -25,10 +25,10 @@ namespace Assignment_5_cube {
         float rz = 0.0f;
         float r = 10f;
        
-        float d = 800;
+        float d = 50;
         float theta = -90f;
         float phi = -90f;
-        int fase = 1;
+        int fase = 2;
         bool scaleUp = true;
         bool rotatingX = false;
 
@@ -154,13 +154,7 @@ namespace Assignment_5_cube {
                 float fov = (float)(Math.Tan(d / temp.z));
                 Matrix projection = Matrix.projectionView(fov);
                 result.Add(projection * temp);
-           
 
-
-                //vec tmp = model_vec[i] * model_view;
-                //float fov = std::tan(d / tmp.z);
-                //mat m_projection = projection(fov);
-                //cube_buffer[i] = (tmp * m_projection);
             }
 
             return ViewportTransformation(800, 600, result);

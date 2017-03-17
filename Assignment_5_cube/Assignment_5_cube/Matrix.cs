@@ -87,7 +87,7 @@ namespace Assignment_5_cube
         public static Matrix Translate(Vector v)
         {
             Matrix m = new Matrix
-            (1, 0, 0, v.x,
+                (1, 0, 0, v.x,
                 0, 1, 0, v.y,
                 0, 0, 1, v.z,
                 0, 0, 0, 1);
@@ -162,8 +162,8 @@ namespace Assignment_5_cube
 
         public static Matrix projectionView(float d) {
             Matrix m = new Matrix(
-                d, 0, 0, 0,
-                0, d, 0, 0,
+                -d, 0, 0, 0,
+                0, -d, 0, 0,
                 0, 0, 0, 0,
                 0, 0, 0, 1
                 );
@@ -172,7 +172,6 @@ namespace Assignment_5_cube
 
         public static Matrix inverseView(float r, float phi, float theta)
         {
-
             Vector v = new Vector(
                 -r * (float)Math.Cos(theta) * (float)Math.Sin(phi),
                 -r * (float)Math.Sin(theta) * (float)Math.Sin(phi),
