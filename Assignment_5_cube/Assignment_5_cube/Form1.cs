@@ -25,7 +25,7 @@ namespace Assignment_5_cube {
         float rz = 0.0f;
         float r = 10f;
        
-        float d = 50;
+        float d = 800;
         float theta = -90f;
         float phi = -90f;
         int fase = 2;
@@ -96,18 +96,6 @@ namespace Assignment_5_cube {
         public Form1() {
             InitializeComponent();
             this.Size = new Size(800, 600);
-
-            //Matrix m1 = new Matrix();
-            //Console.WriteLine(m1);
-            //Matrix m2 = new Matrix(3, 0, 4, 0, 5, 0, 1, 3, 0, 4, 0, 5, 0, 0, 0, 1);
-            //Console.WriteLine(m1 + m2);
-
-            System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
-
-
-            t.Interval = 50; // specify interval time as you want
-            t.Tick += new EventHandler(timer_Tick);
-            t.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -123,12 +111,9 @@ namespace Assignment_5_cube {
             Matrix R = Matrix.rotateX(rx) * Matrix.rotateY(ry) * Matrix.rotateZ(rz);
             Matrix model = S * T * R;
 
-            // Create our inverse m_view matrix (converting degrees to radians)
             Matrix matrixView = Matrix.inverseView(r, (float) (phi * Math.PI / 180), (float) (theta * Math.PI / 180));
-            // Create our model_view matrix
             Matrix modelView = matrixView * model;
 
-            // Matrix T = Matrix.Transition(vb);
             vb = new List<Vector>();
             foreach (Vector v in cube.vertexbuffer)
             {
@@ -136,8 +121,6 @@ namespace Assignment_5_cube {
                 vb.Add(vp);
             }
 
-            
-            //vb = ViewportTransformation(800, 600, vb);
             cube.Draw(e.Graphics, viewingPipeLine(vb, modelView));
 
             //ax.Draw(e.Graphics, ax.vertextbuffer);
@@ -151,8 +134,8 @@ namespace Assignment_5_cube {
 
             foreach (Vector v in vb) {
                 Vector temp = modelView * v;
-                float fov = (float)(Math.Tan(d / temp.z));
-                Matrix projection = Matrix.projectionView(fov);
+                float f = (float)(Math.Tan(d / temp.z));
+                Matrix projection = Matrix.projectionView(f);
                 result.Add(projection * temp);
 
             }
@@ -169,7 +152,7 @@ namespace Assignment_5_cube {
 
                 t.Interval = 150; // specify interval time as you want
                 t.Tick += new EventHandler(timer_Tick);
-                //t.Start();
+                t.Start();
             }
         }
 
