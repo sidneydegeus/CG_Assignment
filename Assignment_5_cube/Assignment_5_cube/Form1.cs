@@ -85,7 +85,12 @@ namespace Assignment_5_cube {
             Matrix R = Matrix.rotateX(rx * (float)(Math.PI / 180)) * Matrix.rotateX(ry * (float)(Math.PI / 180)) * Matrix.rotateZ(rz * (float)(Math.PI / 180));
             Matrix model = S * T * R;
 
-           // Matrix T = Matrix.Transition(vb);
+            // Create our inverse m_view matrix (converting degrees to radians)
+            Matrix matrixView = Matrix.inverseView(r, (float) (phi * Math.PI / 180), (float) (theta * Math.PI / 180));
+            // Create our model_view matrix
+            Matrix modelView = matrixView * model;
+
+            // Matrix T = Matrix.Transition(vb);
             vb = new List<Vector>();
             foreach (Vector v in cube.vertexbuffer)
             {
@@ -97,9 +102,9 @@ namespace Assignment_5_cube {
             vb = ViewportTransformation(800, 600, vb);
             cube.Draw(e.Graphics, vb);
 
-            ax.Draw(e.Graphics, ax.vertextbuffer);
-            ay.Draw(e.Graphics, ay.vertextbuffer);
-            az.Draw(e.Graphics, az.vertextbuffer);
+            //ax.Draw(e.Graphics, ax.vertextbuffer);
+            //ay.Draw(e.Graphics, ay.vertextbuffer);
+            //az.Draw(e.Graphics, az.vertextbuffer);
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)

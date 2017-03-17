@@ -160,14 +160,40 @@ namespace Assignment_5_cube
             return ToVector2D(m);
         }
 
-        public static Matrix viewMatrix()
-        {
-            
+        public static Matrix projectionView(float d) {
+            Matrix m = new Matrix(
+                d / 5, 0, 0, 0,
+                0, d / 5, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 1
+                );
+            return m;
         }
 
-        public static inverseMatrix(float r, float phi, float theta)
+        public static Matrix inverseView(float r, float phi, float theta)
         {
 
+            Vector v = new Vector(
+                -r * (float)Math.Cos(theta) * (float)Math.Sin(phi),
+                -r * (float)Math.Sin(theta) * (float)Math.Sin(phi),
+                -r * (float)Math.Cos(phi)
+           );
+
+            Matrix inverseX = new Matrix(
+                1, 0, 0, 0,
+                0, (float)Math.Cos(phi), (float)Math.Sin(phi), 0,
+                0, -(float)Math.Sin(phi), (float)Math.Cos(phi), 0,
+                0, 0, 0, 1
+            );
+
+            Matrix inverseZ = new Matrix(
+                -(float)Math.Sin(theta), (float)Math.Cos(theta), 0, 0,
+                -(float)Math.Cos(theta), -(float)Math.Sin(theta), 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+            );
+
+            return inverseX * inverseZ * Translate(v);
         }
 
         public override string ToString()
