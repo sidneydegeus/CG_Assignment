@@ -80,7 +80,7 @@ namespace Assignment_5_cube
         public static Matrix Scale(float s)
         {
             Matrix m = new Matrix(s);
-            
+
             return m;
         }
 
@@ -162,8 +162,8 @@ namespace Assignment_5_cube
 
         public static Matrix projectionView(float d) {
             Matrix m = new Matrix(
-                d / 5, 0, 0, 0,
-                0, d / 5, 0, 0,
+                d, 0, 0, 0,
+                0, d, 0, 0,
                 0, 0, 0, 0,
                 0, 0, 0, 1
                 );
@@ -182,13 +182,13 @@ namespace Assignment_5_cube
             Matrix inverseX = new Matrix(
                 1, 0, 0, 0,
                 0, (float)Math.Cos(phi), (float)Math.Sin(phi), 0,
-                0, -(float)Math.Sin(phi), (float)Math.Cos(phi), 0,
+                0, (float)-Math.Sin(phi), (float)Math.Cos(phi), 0,
                 0, 0, 0, 1
             );
 
             Matrix inverseZ = new Matrix(
-                -(float)Math.Sin(theta), (float)Math.Cos(theta), 0, 0,
-                -(float)Math.Cos(theta), -(float)Math.Sin(theta), 0, 0,
+                (float)-Math.Sin(theta), (float)Math.Cos(theta), 0, 0,
+                (float)-Math.Cos(theta), (float)-Math.Sin(theta), 0, 0,
                 0, 0, 1, 0,
                 0, 0, 0, 1
             );

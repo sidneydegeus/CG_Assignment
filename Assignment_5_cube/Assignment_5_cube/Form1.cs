@@ -16,7 +16,7 @@ namespace Assignment_5_cube {
         AxesX ax = new AxesX();
         AxesY ay = new AxesY();
         AxesZ az = new AxesZ();
-        float scale = 1.01f;
+        float scale = 1.0f;
         float tx = 0.0f;
         float ty = 0.0f;
         float tz = 0.0f;
@@ -28,7 +28,7 @@ namespace Assignment_5_cube {
         float d = 800;
         float theta = -90f;
         float phi = -90f;
-        int fase = 2;
+        int fase = 1;
         bool scaleUp = true;
         bool rotatingX = false;
 
@@ -36,10 +36,36 @@ namespace Assignment_5_cube {
 
         void timer_Tick(object sender, EventArgs e)
         {
-            switch(fase)
+            label1.Text = "Scale: " + scale.ToString();
+            label2.Text = "Translate: " + scale.ToString();
+            label3.Text = "RotateX: " + rx.ToString();
+            label4.Text = "RotateY: " + ry.ToString();
+            label5.Text = "RotateZ: " + rz.ToString();
+
+            label6.Text = "r: " + r.ToString();
+            label7.Text = "d: " + d.ToString();
+            label8.Text = "phi: " + phi.ToString();
+            label9.Text = "theta: " + theta.ToString();
+
+            switch (fase)
             {
                 case 1:
-                    theta--;
+                    //theta--;
+                    if (!scaleUp && scale < 1.5f)
+                    {
+                        scale += 0.01f;
+                    }
+                    else if (scaleUp && scale > 1.0f)
+                    {
+                        scale -= 0.01f;
+                    }
+
+                    if (scale - 1.5f >= 0.0f) scaleUp = true;
+                    else if (scale - 1.0f <= 0.0f)
+                    {
+                        scaleUp = false;
+                        //fase++;
+                    }
                     break;
                 case 2:
                     theta--;
@@ -81,7 +107,7 @@ namespace Assignment_5_cube {
 
             t.Interval = 50; // specify interval time as you want
             t.Tick += new EventHandler(timer_Tick);
-           // t.Start();
+            t.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -92,9 +118,9 @@ namespace Assignment_5_cube {
         {
             base.OnPaint(e);
             List<Vector> vb;
-            Matrix S = Matrix.Scale(scale);
+            Matrix S = Matrix.Scale(scale * 10);
             Matrix T = Matrix.Translate(new Vector());
-            Matrix R = Matrix.rotateX(rx * (float)(Math.PI / 180)) * Matrix.rotateY(ry * (float)(Math.PI / 180)) * Matrix.rotateZ(rz * (float)(Math.PI / 180));
+            Matrix R = Matrix.rotateX(rx) * Matrix.rotateY(ry) * Matrix.rotateZ(rz);
             Matrix model = S * T * R;
 
             // Create our inverse m_view matrix (converting degrees to radians)
@@ -167,8 +193,5 @@ namespace Assignment_5_cube {
 
             return res;
         }
-
-
-
     }
 }
