@@ -33,6 +33,16 @@ namespace Assignment_5_cube
             new Vector( 100.0f, -100.0f, -100.0f),    //6
             new Vector(-100.0f, -100.0f, -100.0f),    //7
             new Vector(-100.0f,  100.0f, -100.0f)     //8
+
+            //   new Vector( 1.0f,  1.0f, 1.0f),     //1
+            //new Vector( 1.0f, -1.0f, 1.0f),     //2
+            //new Vector(-1.0f, -1.0f, 1.0f),     //3
+            //new Vector(-1.0f,  1.0f, 1.0f),     //4
+
+            //new Vector( 1.0f,  1.0f, -1.0f),    //5
+            //new Vector( 1.0f, -1.0f, -1.0f),    //6
+            //new Vector(-1.0f, -1.0f, -1.0f),    //7
+            //new Vector(-1.0f,  1.0f, -1.0f)     //8
         };
 
         Color col;
@@ -60,7 +70,7 @@ namespace Assignment_5_cube
             g.DrawLine(pen, vb[6].x, vb[6].y, vb[7].x, vb[7].y);    //7 -> 8
             g.DrawLine(pen, vb[7].x, vb[7].y, vb[4].x, vb[4].y);    //8 -> 5
 
-            pen.DashStyle = DashStyle.DashDot;
+            //pen.DashStyle = DashStyle.DashDot;
             g.DrawLine(pen, vb[0].x, vb[0].y, vb[4].x, vb[4].y);    //1 -> 5
             g.DrawLine(pen, vb[1].x, vb[1].y, vb[5].x, vb[5].y);    //2 -> 6
             g.DrawLine(pen, vb[2].x, vb[2].y, vb[6].x, vb[6].y);    //3 -> 7

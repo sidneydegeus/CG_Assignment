@@ -28,8 +28,9 @@ namespace Assignment_5_cube {
         float d = 800;
         float theta = -90f;
         float phi = -90f;
-        int fase = 1;
+        int fase = 2;
         bool scaleUp = true;
+        bool rotatingX = false;
 
         //   IIntellisenseBuilder fase = 0;
 
@@ -42,6 +43,17 @@ namespace Assignment_5_cube {
                     break;
                 case 2:
                     theta--;
+                    if (rx < 45.0f && !rotatingX) {
+                        rx++;
+                    } else if (rx > 0.0f && rotatingX) {
+                        rx--;
+                    }
+
+                    if (rx >= 45.0f)
+                        rotatingX = true;
+                    else if (rx <= 0.0f) 
+                        rotatingX = false;
+                    
                     break;
                     
                 case 3:
@@ -59,17 +71,17 @@ namespace Assignment_5_cube {
             InitializeComponent();
             this.Size = new Size(800, 600);
 
-            Matrix m1 = new Matrix();
-            Console.WriteLine(m1);
-            Matrix m2 = new Matrix(3, 0, 4, 0, 5, 0, 1, 3, 0, 4, 0, 5, 0, 0, 0, 1);
-            Console.WriteLine(m1 + m2);
+            //Matrix m1 = new Matrix();
+            //Console.WriteLine(m1);
+            //Matrix m2 = new Matrix(3, 0, 4, 0, 5, 0, 1, 3, 0, 4, 0, 5, 0, 0, 0, 1);
+            //Console.WriteLine(m1 + m2);
 
             System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 
 
             t.Interval = 50; // specify interval time as you want
             t.Tick += new EventHandler(timer_Tick);
-            t.Start();
+           // t.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -80,9 +92,9 @@ namespace Assignment_5_cube {
         {
             base.OnPaint(e);
             List<Vector> vb;
-            Matrix S = Matrix.Scale(1.0f);
+            Matrix S = Matrix.Scale(scale);
             Matrix T = Matrix.Translate(new Vector());
-            Matrix R = Matrix.rotateX(rx * (float)(Math.PI / 180)) * Matrix.rotateX(ry * (float)(Math.PI / 180)) * Matrix.rotateZ(rz * (float)(Math.PI / 180));
+            Matrix R = Matrix.rotateX(rx * (float)(Math.PI / 180)) * Matrix.rotateY(ry * (float)(Math.PI / 180)) * Matrix.rotateZ(rz * (float)(Math.PI / 180));
             Matrix model = S * T * R;
 
             // Create our inverse m_view matrix (converting degrees to radians)
@@ -95,16 +107,37 @@ namespace Assignment_5_cube {
             foreach (Vector v in cube.vertexbuffer)
             {
                 Vector vp = S * v;
-
                 vb.Add(vp);
             }
 
-            vb = ViewportTransformation(800, 600, vb);
-            cube.Draw(e.Graphics, vb);
+            
+            //vb = ViewportTransformation(800, 600, vb);
+            cube.Draw(e.Graphics, viewingPipeLine(vb, modelView));
 
             //ax.Draw(e.Graphics, ax.vertextbuffer);
             //ay.Draw(e.Graphics, ay.vertextbuffer);
             //az.Draw(e.Graphics, az.vertextbuffer);
+        }
+
+        private List<Vector> viewingPipeLine(List<Vector> vb, Matrix modelView) {
+
+            List<Vector> result = new List<Vector>();
+
+            foreach (Vector v in vb) {
+                Vector temp = modelView * v;
+                float fov = (float)(Math.Tan(d / temp.z));
+                Matrix projection = Matrix.projectionView(fov);
+                result.Add(projection * temp);
+           
+
+
+                //vec tmp = model_vec[i] * model_view;
+                //float fov = std::tan(d / tmp.z);
+                //mat m_projection = projection(fov);
+                //cube_buffer[i] = (tmp * m_projection);
+            }
+
+            return ViewportTransformation(800, 600, result);
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -116,7 +149,7 @@ namespace Assignment_5_cube {
 
                 t.Interval = 150; // specify interval time as you want
                 t.Tick += new EventHandler(timer_Tick);
-                t.Start();
+                //t.Start();
             }
         }
 
