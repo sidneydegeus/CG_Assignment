@@ -26,7 +26,7 @@ namespace Assignment_5_cube {
         }
 
         public static float operator *(Vector v1, Vector v2) {
-            return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+            return v1.x * v2.x + v1.y * v2.y;
         }
 
         public void Transpose() {

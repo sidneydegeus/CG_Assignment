@@ -26,7 +26,7 @@ namespace Assignment_5_cube
             this(f, 0, 0, 0,
                   0, f, 0, 0,
                   0, 0, f, 0,
-                  0, 0, 0, f)
+                  0, 0, 0, 1)
         { }
 
         public Matrix(Vector v) :
@@ -80,7 +80,63 @@ namespace Assignment_5_cube
         public static Matrix Scale(float s)
         {
             Matrix m = new Matrix(s);
-            m.mat[2, 2] = 1;
+            
+            return m;
+        }
+
+        public static Matrix Translate(Vector v)
+        {
+            Matrix m = new Matrix
+            (1, 0, 0, v.x,
+                0, 1, 0, v.y,
+                0, 0, 1, v.z,
+                0, 0, 0, 1);
+
+            return m;
+        }
+
+        public static Matrix rotateX(float degrees)
+        {
+            double radians = (Math.PI / 180) * degrees;
+            float sin = (float) Math.Sin(radians);
+            float cos = (float) Math.Cos(radians);
+
+            Matrix m = new Matrix
+            (1, 0, 0, 0,
+            0, cos, -sin, 0,
+            0, sin, cos, 0,
+            0, 0, 0, 1);
+
+            return m;
+        }
+
+        public static Matrix rotateY(float degrees)
+        {
+            double radians = (Math.PI / 180) * degrees;
+            float sin = (float)Math.Sin(radians);
+            float cos = (float)Math.Cos(radians);
+
+            Matrix m = new Matrix
+            (cos, 0, sin, 0,
+            0, 1, 0, 0,
+            -sin, 0, cos, 0,
+            0, 0, 0, 1);
+
+            return m;
+        }
+
+        public static Matrix rotateZ(float degrees)
+        {
+            double radians = (Math.PI / 180) * degrees;
+            float sin = (float)Math.Sin(radians);
+            float cos = (float)Math.Cos(radians);
+
+            Matrix m = new Matrix
+            (cos, -sin, 0, 0,
+            sin, cos, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1);
+
             return m;
         }
 
@@ -102,6 +158,16 @@ namespace Assignment_5_cube
             m.mat = result;
 
             return ToVector2D(m);
+        }
+
+        public static Matrix viewMatrix()
+        {
+            
+        }
+
+        public static inverseMatrix(float r, float phi, float theta)
+        {
+
         }
 
         public override string ToString()

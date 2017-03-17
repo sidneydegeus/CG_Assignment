@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace Assignment_5_cube {
@@ -15,7 +16,7 @@ namespace Assignment_5_cube {
         AxesX ax = new AxesX();
         AxesY ay = new AxesY();
         AxesZ az = new AxesZ();
-        float scale = 1.0f;
+        float scale = 1.01f;
         float tx = 0.0f;
         float ty = 0.0f;
         float tz = 0.0f;
@@ -27,33 +28,91 @@ namespace Assignment_5_cube {
         float d = 800;
         float theta = -90f;
         float phi = -90f;
+        int fase = 1;
+        bool scaleUp = true;
 
-        Timer myTimer = new Timer();
-     //   IIntellisenseBuilder fase = 0;
+        //   IIntellisenseBuilder fase = 0;
 
-        private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
+        void timer_Tick(object sender, EventArgs e)
+        {
+            switch(fase)
+            {
+                case 1:
+                    theta--;
+                    break;
+                case 2:
+                    theta--;
+                    break;
+                    
+                case 3:
+                    phi++;
+                    break;
+                case 4:
+                    break;
 
+
+            }
+
+            Invalidate();
         }
-
         public Form1() {
             InitializeComponent();
+            this.Size = new Size(800, 600);
+
+            Matrix m1 = new Matrix();
+            Console.WriteLine(m1);
+            Matrix m2 = new Matrix(3, 0, 4, 0, 5, 0, 1, 3, 0, 4, 0, 5, 0, 0, 0, 1);
+            Console.WriteLine(m1 + m2);
+
+            System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
+
+
+            t.Interval = 50; // specify interval time as you want
+            t.Tick += new EventHandler(timer_Tick);
+            t.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-
+            
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             List<Vector> vb;
-            vb = ViewportTransformation(800, 600, cube.vertexbuffer);
+            Matrix S = Matrix.Scale(1.0f);
+            Matrix T = Matrix.Translate(new Vector());
+            Matrix R = Matrix.rotateX(rx * (float)(Math.PI / 180)) * Matrix.rotateX(ry * (float)(Math.PI / 180)) * Matrix.rotateZ(rz * (float)(Math.PI / 180));
+            Matrix model = S * T * R;
+
+           // Matrix T = Matrix.Transition(vb);
+            vb = new List<Vector>();
+            foreach (Vector v in cube.vertexbuffer)
+            {
+                Vector vp = S * v;
+
+                vb.Add(vp);
+            }
+
+            vb = ViewportTransformation(800, 600, vb);
             cube.Draw(e.Graphics, vb);
 
             ax.Draw(e.Graphics, ax.vertextbuffer);
             ay.Draw(e.Graphics, ay.vertextbuffer);
             az.Draw(e.Graphics, az.vertextbuffer);
+        }
 
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.ToString() == "a")
+            {
+                System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
+
+
+                t.Interval = 150; // specify interval time as you want
+                t.Tick += new EventHandler(timer_Tick);
+                t.Start();
+            }
         }
 
         public static List<Vector> ViewportTransformation(float width, float height, List<Vector> vb)
