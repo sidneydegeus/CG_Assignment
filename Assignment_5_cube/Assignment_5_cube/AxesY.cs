@@ -10,7 +10,7 @@ namespace Assignment_5_cube {
 
         public List<Vector> vertextbuffer = new List<Vector> {
             new Vector(0, 0, 0),
-           new Vector(size, 0, 0)
+           new Vector(0, 0, 0)
         };
 
         public void Draw(Graphics g, List<Vector> vb) {

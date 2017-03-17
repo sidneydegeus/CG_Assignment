@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace Assignment_5_cube {
+namespace Assignment_5_cube{
 
-    public class Cube {
+    public class Cube
+    {
         //          3----------2
         //         /|         /|
         //        / |        / |                z
         //       /  7-------/--6                |
-        //      4--/-------1  /                 —--x
+        //      4--/-------1  /                 ----x
         //      | /        | /                 /
         //      |/         |/                  y
         //      8----------5
@@ -22,15 +23,15 @@ namespace Assignment_5_cube {
         private const int size = 1;
         public List<Vector> vertexbuffer = new List<Vector>
         {
-            new Vector( 1.0f,  1.0f, 1.0f),     //1
-            new Vector( 1.0f, -1.0f, 1.0f),     //2
-            new Vector(-1.0f, -1.0f, 1.0f),     //3
-            new Vector(-1.0f,  1.0f, 1.0f),     //4
+            new Vector( 100.0f,  100.0f, 100.0f),     //1
+            new Vector( 100.0f, -100.0f, 100.0f),     //2
+            new Vector(-100.0f, -100.0f, 100.0f),     //3
+            new Vector(-100.0f,  100.0f, 100.0f),     //4
 
-            new Vector( 1.0f,  1.0f, -1.0f),    //5
-            new Vector( 1.0f, -1.0f, -1.0f),    //6
-            new Vector(-1.0f, -1.0f, -1.0f),    //7
-            new Vector(-1.0f,  1.0f, -1.0f)     //8
+            new Vector( 100.0f,  100.0f, -100.0f),    //5
+            new Vector( 100.0f, -100.0f, -100.0f),    //6
+            new Vector(-100.0f, -100.0f, -100.0f),    //7
+            new Vector(-100.0f,  100.0f, -100.0f)     //8
         };
 
         Color col;
@@ -45,7 +46,8 @@ namespace Assignment_5_cube {
         //    };
         //}
 
-        public void Draw(Graphics g, List<Vector> vb) {
+        public void Draw(Graphics g, List<Vector> vb)
+        {
             Pen pen = new Pen(col, 3f);
             g.DrawLine(pen, vb[0].x, vb[0].y, vb[1].x, vb[1].y);    //1 -> 2
             g.DrawLine(pen, vb[1].x, vb[1].y, vb[2].x, vb[2].y);    //2 -> 3
@@ -64,7 +66,8 @@ namespace Assignment_5_cube {
             g.DrawLine(pen, vb[3].x, vb[3].y, vb[7].x, vb[7].y);    //4 -> 8
 
             Font font = new Font("Arial", 12, FontStyle.Bold);
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 8; i++)
+            {
                 PointF p = new PointF(vb[i].x, vb[i].y);
                 g.DrawString(i.ToString(), font, Brushes.Black, p);
             }

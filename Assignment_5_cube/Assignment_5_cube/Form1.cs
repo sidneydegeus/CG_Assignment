@@ -29,7 +29,7 @@ namespace Assignment_5_cube {
         float phi = -90f;
 
         Timer myTimer = new Timer();
-        IIntellisenseBuilder fase = 0;
+     //   IIntellisenseBuilder fase = 0;
 
         private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
 
@@ -42,5 +42,36 @@ namespace Assignment_5_cube {
         private void Form1_Load(object sender, EventArgs e) {
 
         }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            List<Vector> vb;
+            vb = ViewportTransformation(800, 600, cube.vertexbuffer);
+            cube.Draw(e.Graphics, vb);
+
+            ax.Draw(e.Graphics, ax.vertextbuffer);
+            ay.Draw(e.Graphics, ay.vertextbuffer);
+            az.Draw(e.Graphics, az.vertextbuffer);
+
+        }
+
+        public static List<Vector> ViewportTransformation(float width, float height, List<Vector> vb)
+        {
+            List<Vector> res = new List<Vector>();
+
+            float delta_x = width / 2;
+            float delta_y = height / 2;
+
+            foreach (Vector v in vb)
+            {
+                res.Add(new Vector(v.x + delta_x, v.y + delta_y, 100));
+            }
+
+            return res;
+        }
+
+
+
     }
 }
